@@ -1,0 +1,10 @@
+
+# Sandbox dotfiles
+.bash*
+.profile
+.gitconfig
+.git-credentials
+.git/
+
+# Dependencies
+node_modules/

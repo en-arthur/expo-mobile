@@ -1,0 +1,21 @@
+0 verbose cli /usr/local/bin/node /usr/local/bin/npm
+1 info using npm@11.9.0
+2 info using node@v24.14.0
+3 silly config load:file:/usr/local/lib/node_modules/npm/npmrc
+4 silly config load:file:/tmp/.create-expo-app/template-cache/.npmrc
+5 silly config load:file:/home/user/.npmrc
+6 silly config load:file:/usr/local/etc/npmrc
+7 verbose title npm pack expo-template-default@latest
+8 verbose argv "pack" "expo-template-default@latest" "--json"
+9 verbose logfile logs-max:10 dir:/home/user/.npm/_logs/2026-03-11T22_15_17_818Z-
+10 verbose logfile /home/user/.npm/_logs/2026-03-11T22_15_17_818Z-debug-0.log
+11 silly logfile done cleaning log files
+12 http cache https://registry.npmjs.org/expo-template-default 17ms (cache hit)
+13 http cache https://registry.npmjs.org/expo-template-default 4ms (cache hit)
+14 http cache https://registry.npmjs.org/expo-template-default/-/expo-template-default-54.0.60.tgz 0ms (cache hit)
+15 verbose cwd /tmp/.create-expo-app/template-cache
+16 verbose os Linux 6.1.158
+17 verbose node v24.14.0
+18 verbose npm  v11.9.0
+19 verbose exit 0
+20 info ok
