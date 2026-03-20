@@ -1,0 +1,40 @@
+name: WorkersCraft iOS Build
+on:
+  workflow_dispatch:
+    inputs:
+      build_type:
+        default: 'debug'
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+      - run: npm ci
+      - run: npx expo prebuild --platform ios --non-interactive
+      - uses: actions/cache@v3
+        with:
+          path: ios/Pods
+          key: pods-${{ hashFiles('ios/Podfile.lock') }}
+          restore-keys: pods-
+      - run: cd ios && pod install --repo-update
+      - name: Build unsigned IPA
+        run: |
+          cd ios
+          xcodebuild -workspace *.xcworkspace -scheme "$(ls *.xcworkspace | sed 's/.xcworkspace//')" \
+            -configuration Debug -sdk iphonesimulator \
+            CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO \
+            -derivedDataPath build
+          cd build/Build/Products/Debug-iphonesimulator
+          mkdir Payload && cp -r *.app Payload/
+          zip -r app-debug.ipa Payload
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ios-debug
+          path: |
+            ios/output/*.ipa
+            ios/build/Build/Products/**/*.ipa
+          retention-days: 30
